@@ -1,0 +1,6 @@
+<p>Заголовок: <%= @project.tittle  %></p>
+<p>Описание: <%= @project.body  %></p>
+<p>id: <%= @project.id  %></p>
+<p>id пользователя: <%= @project.user_id  %></p>
+<p><%= link_to 'Редактировать', "/projects/#{@project.id}/edit" %></p>
+<p><%= link_to 'Все проекты', '/projects' %></p>
