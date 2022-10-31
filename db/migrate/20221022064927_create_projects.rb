@@ -4,7 +4,6 @@ class CreateProjects < ActiveRecord::Migration[7.0]
       t.text :tittle
       t.text :body
       t.integer :user_id
-      t.integer :id, index: true
       t.timestamps
     end
   end
