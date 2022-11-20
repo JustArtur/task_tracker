@@ -8,5 +8,4 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create', as: 'session'
   resources :projects
   resources :tasks, only: %i[new create]
-
 end

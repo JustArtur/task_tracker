@@ -1,19 +1,18 @@
 class ProjectsController < ApplicationController
-  skip_before_action :verify_authenticity_token
   def index
     @projects = Project.all
   end
 
   def new
+    @project = Project.new
   end
 
   def create
-    Project.create(
-      tittle: params[:projects][:tittle],
-      body: params[:projects][:body],
-      user_id: params[:projects][:user_id],
-      id:params[:projects][:id]
+    @project = Project.create(
+      tittle: params[:project][:tittle],
+      body: params[:project][:body]
     )
+    render 'projects/show'
   end
 
   def show
