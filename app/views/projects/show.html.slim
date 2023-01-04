@@ -1,0 +1,13 @@
+/ <p>Заголовок: <%= @project.tittle  %></p>
+/ <p>Описание: <%= @project.body  %></p>
+/ <p><%= button_to 'Редактировать', edit_project_path(@project.id) %></p>
+/ <p><%= button_to 'Удалить проект', project_path(@project.id), method: :delete %></p>
+/ <p><%= button_to 'Все проекты', '/projects', method: :get %></p>
+
+h3 = @project.tittle
+p = @project.body
+
+div
+  = button_to 'Редактировать', edit_project_path(@project.id), method: :get
+  = button_to 'Удалить проект', project_path(@project.id), method: :delete
+  = button_to 'Все проекты', '/projects', method: :get

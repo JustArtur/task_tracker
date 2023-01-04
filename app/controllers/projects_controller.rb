@@ -1,19 +1,17 @@
 class ProjectsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  before_action :require_login
+
   def index
-    @projects = Project.all
+    @projects = Project.all.where(user_id: current_user.id)
   end
 
   def new
+    @project = Project.new
   end
 
   def create
-    Project.create(
-      tittle: params[:projects][:tittle],
-      body: params[:projects][:body],
-      user_id: params[:projects][:user_id],
-      id:params[:projects][:id]
-    )
+    @project = Project.create(project_params)
+    redirect_to project_path(@project.id)
   end
 
   def show
@@ -24,8 +22,21 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def update
+    @project = Project.find(params[:id])
+    @project.update(project_params)
+    redirect_to @project
+  end
+
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
+    redirect_to root_path
+  end
+
+  private
+
+  def project_params
+    params.require(:project).permit(:tittle, :body, :user_id)
   end
 end

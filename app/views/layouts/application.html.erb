@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TaskTracker</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>TaskTracker</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body>
-    <% if flash[:notice].present?%>
-      <p><%= flash[:notice] %></p>
-    <%elsif flash[:alert].present?%>
-      <p><%= flash[:alert] %></p>
-    <% end %>
-    <%= yield %>
-  </body>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <%= javascript_include_tag "application" %>
+</head>
+<body>
+<div class="user_container">
+  <% if @current_user %>
+    <%= link_to @current_user.email, @current_user %>
+  <% else %>
+    <%= button_to "login", new_sessions_path, method: "get" %>
+    <%= button_to "signup", new_user_path, method: "get" %>
+  <% end %>
+</div>
+<%= yield %>
+</body>
 </html>

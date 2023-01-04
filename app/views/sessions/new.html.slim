@@ -1,0 +1,13 @@
+h3 Login
+
+= form_with(model: @user, url: sessions_path) do |form|
+  .mb-3
+    = form.label :email, class: "form-label"
+    = form.text_field :email, class: "form-control"
+
+  .mb-3
+    = form.label :password_digest, class: "form-label"
+    = form.password_field :password_digest, class: "form-control"
+
+  .mb-3
+    = form.submit 'Login', class: "btn btn-primary"

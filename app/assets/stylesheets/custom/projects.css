@@ -1,0 +1,11 @@
+.li_projects_list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 15px;
+    width: 1000px;
+}
+
+.new_project_link {
+    margin-left: 30px;
+}

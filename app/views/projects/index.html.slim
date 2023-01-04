@@ -1,0 +1,19 @@
+h3 Все проекты
+= link_to 'New project', 'projects/new', class: 'btn btn-primary'
+
+table.projects_table
+  thead
+    tr
+      th Project
+      th Description
+      th Created_at
+      th Updated_at
+  tbody
+    - @projects.each do |p|
+      tr
+        td = link_to p.tittle,"/projects/#{p.id}"
+        td = p.body
+        td = p.updated_at
+        td = p.created_at
+        td = button_to "Редактировать", edit_project_path(p.id), method: :get
+        td = button_to "Удалить проект", project_path(p.id), method: :delete

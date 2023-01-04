@@ -1,0 +1,13 @@
+h2 Создание проекта
+
+= form_with(model: @project) do |form|
+  .mb-3
+    = form.label :tittle, class: "form-label"
+    = form.text_area :tittle, class: "form-control"
+
+  .mb-3
+    = form.label :description, class: "form-label"
+    = form.text_area :body, class: "form-control"
+
+  .mb-3
+    = form.submit "Create", class: "btn btn-primary"
