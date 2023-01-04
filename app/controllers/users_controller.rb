@@ -4,19 +4,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: user_params[:email])
-    if user.nil?
+    user = User.new(user_params)
+    if user.valid?
       user = User.new(user_params)
-      if user.save
-        # flash[:success] = "Yoy are successfully registered!"
+      if user.save(validate: false)
         session[:user_id] = user.id
-        redirect_to "/users/#{user.id}", notice: 'Пользователь зарегестрирован, войдите на сайт!'
+        redirect_to "/users/#{user.id}", notice = "Yoy are successfully registered!"
       else
-        # flash[:warning] = "Something goes wrong, try later"
+        flash.alert = "Something goes wrong, try later"
       end
     else
-      # flash[:warning] = "Wrong email or password"
-      redirect_to new_sessions_path, notice: 'Пользовутель c таким email уже существует!'
+      flash.notice = user.errors.full_messages
     end
   end
 
@@ -27,6 +25,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :first_name, :second_name)
+    params.require(:user).permit(:email, :password_confirmation, :password, :first_name, :second_name)
   end
 end

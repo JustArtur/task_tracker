@@ -16,5 +16,9 @@
     = form.password_field :password, class: "form-control"
 
   .mb-3
+    = form.label :password_confirmation, class: "form-label"
+    = form.password_field :password_confirmation, class: "form-control"
+
+  .mb-3
     = form.submit "Log in", class: "btn btn-primary"
 
